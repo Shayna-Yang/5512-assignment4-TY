@@ -6,6 +6,15 @@ format: html
 editor: visual
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  error = FALSE,
+  message = FALSE,
+  warning = FALSE
+  ) 
+```
+
 ::: panel-tabset
 <!-- Task 1 Tab: Data and Documenting -->
 
@@ -68,6 +77,44 @@ This blog post analyzes the relationship between the Big Mac Index, Taiwan's off
     - The data reflects the official spot rate, which might not align with real-world consumer exchange rates that include fees, spreads, or intermediary costs.
 -   **License:** Open Government Data License, version 1.0 (OGDL-Taiwan-1.0) - This license allows reproducing, adapting, compiling, publicly transmitting, or applying it on other methods, and as well as developing various products or services for the data and materials.
 - **Privacy/Ethics: **Aggregated data, minimizing privacy concerns. No direct identifiers.
+
+### Data Downloading and Wrangling
+
+This section outlines the steps to download the datasets used analysis. All processing was done by R using packages.
+
+#### 1. Big Mac Data
+
+Download steps:
+
+1. Access the dataset via GitHub: [The Economist- Big Mac Data](https://github.com/TheEconomist/big-mac-data?tab=readme-ov-file)
+
+2. download the `big-mac-full-index.csv` in the output-data folder and save it to the `data` folder.
+
+3. Load the dataset into project
+```{r}
+# Library package
+library(tidyverse)
+library(lubridate)
+```
+
+```{r}
+# read raw data
+bigmac_data <- read.csv("data/big-mac-full-index.csv")
+
+# filter for Taiwan from 2015 to 2025
+bigmac_tw <- bigmac_data |>
+  filter(name == "Taiwan") |>
+  mutate(date = as.Date(date),
+         year = year(date),
+         month = month(date)) |>
+  filter(year >= 2015 & year <= 2025) |>
+  mutate(
+    USD_valuation = (dollar_ex - USD_raw) / USD_raw 
+    # for compare ppp and actual rate
+  ) |>
+  select(year, month, local_price, dollar_ex, USD_raw, USD_valuation)
+```
+
 
 Here is where you should provide the more comprehensive details about your data and your processing steps.
 
