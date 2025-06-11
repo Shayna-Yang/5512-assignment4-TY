@@ -28,8 +28,6 @@ Does the Big Mac Index accurately reflect the real cost of living changes in Tai
 
 -   How does the Big Mac price in Taiwan correlate with official CPI changes?
 
--   Does the valuation of the Taiwan Dollar based on Big Mac PPP match with economic reality?
-
 ### Data Sources and Suitability
 
 This blog post analyzes the relationship between the Big Mac Index, Taiwan's official exchange rate, and domestic consumer prices to assess whether perceived increases in the cost of living are reflected in economic indicators. I selected three publicly available datasets that together provide a view of currency valuation, domestic price levels, and purchasing power:
