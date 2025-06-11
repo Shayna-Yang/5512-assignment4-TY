@@ -246,9 +246,21 @@ exchange_all <- bind_rows(exchange_historical, exchange_recent) |>
 write_csv(exchange_all, "data/twd_usd_exchange_2015_2025.csv")
 ```
 
-Here is where you should provide the more comprehensive details about your data and your processing steps.
+#### 4. Combine the datasets
 
-These are the data details that an "average" blog post reader is not concerned with (Task 1).
+For further analysis, use `left_join()` to combine all the processed datasets.
+```{r}
+bigmac_all <- bigmac_tw |>
+  left_join(cpi_processed, by = c("year", "month")) |>
+  left_join(exchange_all, by = c("year", "month"))
+
+# save processed data
+write_csv(bigmac_all, "data/bigmac_2015-2025.csv")
+```
+
+### Reference
+
+
 
 ### Remember
 

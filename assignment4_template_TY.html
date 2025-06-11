@@ -343,9 +343,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="co"># save processed data</span></span>
 <span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(exchange_all, <span class="st">"data/twd_usd_exchange_2015_2025.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Here is where you should provide the more comprehensive details about your data and your processing steps.</p>
-<p>These are the data details that an “average” blog post reader is not concerned with (Task 1).</p>
 </section>
+<section id="combine-the-datasets" class="level4">
+<h4 class="anchored" data-anchor-id="combine-the-datasets">4. Combine the datasets</h4>
+<p>For further analysis, use <code>left_join()</code> to combine all the processed datasets.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>bigmac_all <span class="ot">&lt;-</span> bigmac_tw <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(cpi_processed, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"month"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(exchange_all, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"month"</span>))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># save processed data</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(bigmac_all, <span class="st">"data/bigmac_2015-2025.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="reference" class="level3">
+<h3 class="anchored" data-anchor-id="reference">Reference</h3>
 </section>
 <section id="remember" class="level3">
 <h3 class="anchored" data-anchor-id="remember">Remember</h3>
