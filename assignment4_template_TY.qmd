@@ -80,7 +80,7 @@ This blog post analyzes the relationship between the Big Mac Index, Taiwan's off
 
 ### Data Downloading and Wrangling
 
-This section outlines the steps to download the datasets used analysis. All processing was done by R using packages.
+This section outlines the steps to download the datasets used analysis. All processing was done by R using packages. All data wrangling steps were documented in this report. A corresponding `README` and `data_dictionary` are included in the submission.  **(Still Undone for readme and data dictionary)**
 
 #### 1. Big Mac Data
 
@@ -260,11 +260,17 @@ write_csv(bigmac_all, "data/bigmac_2015-2025.csv")
 
 ### Reference
 
+1. Big Mac Index- The Economist. (2025). Big Mac Index. GitHub Repository. https://github.com/TheEconomist/big-mac-data
 
+2. Taiwan Consumer Price Index- Directorate-General of Budget, Accounting and Statistics (DGBAS), Taiwan. (2025). Consumer Price Index Monthly Data (2015–2025). https://eng.stat.gov.tw
 
-### Remember
+3. NTD/USD Exchange Rate- Central Bank of the Republic of China (Taiwan). (2025). Monthly Foreign Exchange Rates (NTD/USD). https://www.cbc.gov.tw
 
-Please mention any additional files that you want the markers to review, eg. read me, meta data etc.
+4. Lubridate- Garrett Grolemund, Hadley Wickham (2011). Dates and Times Made Easy with lubridate. Journal of Statistical Software, 40(3), 1-25. URL https://www.jstatsoft.org/v40/i03/.
+
+5. Rvest-  Wickham H (2024). _rvest: Easily Harvest (Scrape) Web Pages_. R package version 1.0.4, <https://CRAN.R-project.org/package=rvest>.
+
+6. Tidyverse- Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” _Journal of Open Source Software_, *4*(43), 1686. doi:10.21105/joss.01686 <https://doi.org/10.21105/joss.01686>.
 
 <!-- Task 2 Tab: Writing your blogpost -->
 
