@@ -116,8 +116,8 @@ library(rvest)
 bigmac_data <- read.csv("raw_data/big-mac-full-index.csv")
 
 # filter for Taiwan from 2015 to 2025
-bigmac_twau <- bigmac_data |>
-  filter(name %in% c("Taiwan", "Australia")) |>
+bigmac_tw <- bigmac_data |>
+  filter(name == "Taiwan") |>
   mutate(date = as.Date(date),
          year = year(date),
          month = month(date)) |>
@@ -126,10 +126,25 @@ bigmac_twau <- bigmac_data |>
     USD_valuation = (dollar_ex - USD_raw) / USD_raw 
     # for compare ppp and actual rate
   ) |>
-  select(name, year, month, local_price, dollar_ex, USD_raw, USD_valuation)
+  select(year, month, local_price, dollar_ex, USD_raw, USD_valuation)
 
 # save processed data
-write_csv(bigmac_twau, "data/bigmac_twau_2015-2025.csv")
+write_csv(bigmac_tw, "data/bigmac_tw_2015-2025.csv")
+
+# filter for Australia from 2015 to 2025
+bigmac_au <- bigmac_data |>
+  filter(name == "Australia") |>
+  mutate(date = as.Date(date),
+         year = year(date),
+         month = month(date)) |>
+  filter(year >= 2015 & year <= 2025) |>
+  mutate(
+    USD_valuation = (dollar_ex - USD_raw) / USD_raw 
+    # for compare ppp and actual rate
+  ) |>
+  select(year, month, local_price, dollar_ex, USD_raw, USD_valuation)
+# save processed data
+write_csv(bigmac_au, "data/bigmac_au_2015-2025.csv")
 ```
 
 #### 2. Taiwan Consumer Price Index (CPI) Data
@@ -327,29 +342,53 @@ write_csv(au_cpi_processed, "data/au_cpi_2014-2024.csv")
 
 #### 5. Combine the datasets
 
-For further analysis, use `left_join()` to combine all the processed datasets.
+For further analysis, use `left_join()` and `bind_rows()` to combine all the processed datasets.
+
+Dataset 1: Taiwan Big Mac Index with Taiwan CPI and Government Exchange Rate
 ```{r}
 bigmac_all <- bigmac_tw |>
-  left_join(cpi_processed, by = c("year", "month")) |>
-  left_join(exchange_all, by = c("year", "month"))
+  left_join(cpi_period_moved, by = c("year", "month")) |>
+  left_join(exchange_all_shifted, by = c("year", "month"))
 
 # save processed data
 write_csv(bigmac_all, "data/bigmac_2015-2025.csv")
 ```
 
+Dataset 2: Australia and Taiwan Big Mac Index and CPI Data
+```{r}
+cpi_period_moved <- cpi_period_moved |>
+  mutate(country = "Taiwan")
+au_cpi_processed <- au_cpi_processed |>
+  mutate(country = "Australia")
+bigmac_tw <- bigmac_tw |>
+  mutate(country = "Taiwan")
+bigmac_au <- bigmac_au |>
+  mutate(country = "Australia")
+cpi_autw <- bind_rows(cpi_period_moved, au_cpi_processed)
+bigmac_autw <- bind_rows(bigmac_tw, bigmac_au)
+# merge data
+bigmac_cpi <- left_join(bigmac_autw, cpi_autw,
+                        by = c("country", "year", "month"))
+# save processed data
+write_csv(bigmac_cpi, "data/bigmac_cpi_2015-2025.csv")
+```
+
+
 ### Reference
 
 1. Big Mac Index- The Economist. (2025). Big Mac Index. GitHub Repository. https://github.com/TheEconomist/big-mac-data
 
-2. Taiwan Consumer Price Index- Directorate-General of Budget, Accounting and Statistics (DGBAS), Taiwan. (2025). Consumer Price Index Monthly Data (2015–2025). https://eng.stat.gov.tw
+2. Taiwan Consumer Price Index- Directorate-General of Budget, Accounting and Statistics (DGBAS), Taiwan. (2025). Consumer Price Index Monthly Data (2014–2024). https://eng.stat.gov.tw
 
 3. NTD/USD Exchange Rate- Central Bank of the Republic of China (Taiwan). (2025). Monthly Foreign Exchange Rates (NTD/USD). https://www.cbc.gov.tw
 
-4. Lubridate- Garrett Grolemund, Hadley Wickham (2011). Dates and Times Made Easy with lubridate. Journal of Statistical Software, 40(3), 1-25. URL https://www.jstatsoft.org/v40/i03/.
+4. Australian Bureau of Statistics. (2025, January 31). Consumer Price Index, Australia — December Quarter 2024 (ABS Catalogue No. 6401.0). https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia/dec-quarter-2024
 
-5. Rvest-  Wickham H (2024). _rvest: Easily Harvest (Scrape) Web Pages_. R package version 1.0.4, <https://CRAN.R-project.org/package=rvest>.
+5. Lubridate- Garrett Grolemund, Hadley Wickham (2011). Dates and Times Made Easy with lubridate. Journal of Statistical Software, 40(3), 1-25. URL https://www.jstatsoft.org/v40/i03/.
 
-6. Tidyverse- Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” _Journal of Open Source Software_, *4*(43), 1686. doi:10.21105/joss.01686 <https://doi.org/10.21105/joss.01686>.
+6. Rvest-  Wickham H (2024). _rvest: Easily Harvest (Scrape) Web Pages_. R package version 1.0.4, <https://CRAN.R-project.org/package=rvest>.
+
+7. Tidyverse- Wickham H, Averick M, Bryan J, Chang W, McGowan LD, François R, Grolemund G, Hayes A, Henry L, Hester J, Kuhn M, Pedersen TL, Miller E, Bache SM, Müller K, Ooms J, Robinson D, Seidel DP, Spinu V, Takahashi K, Vaughan D, Wilke C, Woo K, Yutani H (2019). “Welcome to the tidyverse.” _Journal of Open Source Software_, *4*(43), 1686. doi:10.21105/joss.01686 <https://doi.org/10.21105/joss.01686>.
 
 <!-- Task 2 Tab: Writing your blogpost -->
 
