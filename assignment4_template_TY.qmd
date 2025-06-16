@@ -94,7 +94,7 @@ This blog post analyzes the relationship between the Big Mac Index, Taiwan's off
 
 This section outlines the steps to download the datasets used analysis. All processing was done by R using packages. All data wrangling steps were documented in this report. A corresponding `README` and `data_dictionary` are included in the submission.  **(Still Undone for readme and data dictionary)**
 
-#### 1. Big Mac Data
+#### 1. Big Mac Data (Taiwan and Australia)
 
 Download steps:
 
@@ -116,8 +116,8 @@ library(rvest)
 bigmac_data <- read.csv("raw_data/big-mac-full-index.csv")
 
 # filter for Taiwan from 2015 to 2025
-bigmac_tw <- bigmac_data |>
-  filter(name == "Taiwan") |>
+bigmac_twau <- bigmac_data |>
+  filter(name %in% c("Taiwan", "Australia")) |>
   mutate(date = as.Date(date),
          year = year(date),
          month = month(date)) |>
@@ -126,10 +126,10 @@ bigmac_tw <- bigmac_data |>
     USD_valuation = (dollar_ex - USD_raw) / USD_raw 
     # for compare ppp and actual rate
   ) |>
-  select(year, month, local_price, dollar_ex, USD_raw, USD_valuation)
+  select(name, year, month, local_price, dollar_ex, USD_raw, USD_valuation)
 
 # save processed data
-write_csv(bigmac_tw, "data/bigmac_tw_2015-2025.csv")
+write_csv(bigmac_twau, "data/bigmac_twau_2015-2025.csv")
 ```
 
 #### 2. Taiwan Consumer Price Index (CPI) Data
@@ -258,7 +258,48 @@ exchange_all <- bind_rows(exchange_historical, exchange_recent) |>
 write_csv(exchange_all, "data/twd_usd_exchange_2015_2025.csv")
 ```
 
-#### 4. Combine the datasets
+#### 4. Australia Consumer Price Index (CPI) Data
+
+Download steps:
+
+1. Access to [Australian Bureau of Statistics](https://www.abs.gov.au/) and go to: `Statistics` -> `Key economic indicators` -> `Prices` -> `Consumer Price Index`
+
+2. For matching the big mac data, click the previous releases to reach the version released Jan, 2025.
+
+3. Click the download button and choose save table as csv for All groups CPI.
+
+4. Load the dataset into project
+
+```{r}
+# read raw data
+raw_au_cpi <- read_csv("raw_data/All groups CPI and Trimmed mean, Australia, annual movement (%).csv", skip = 1)
+
+# filter data from Jan 2015 to Jan 2025
+au_cpi_processed <- raw_au_cpi |>
+  rename(
+    period = 1,
+    CPI_index = 2
+  ) |>
+  # filter only the year-month in dataset
+  filter(str_detect(period, "Jun|Dec")) |>
+  mutate(
+    period = str_trim(period),
+    year = as.integer(if_else(str_detect(period, "Dec"), 
+                              as.numeric(str_sub(period, -2)) + 2001,  
+                              # Dec-15 → 2016
+                              as.numeric(str_sub(period, -2)) + 2000)), 
+                              # Jun-15 → 2015
+    month = if_else(str_detect(period, "Dec"), 1, 7)
+  ) |>
+  filter(year >= 2015 & year <= 2025) |>
+  select(year, month, CPI_index)
+
+# save processed data
+write_csv(au_cpi_processed, "data/au_cpi_2015-2025.csv")
+```
+
+
+#### 5. Combine the datasets
 
 For further analysis, use `left_join()` to combine all the processed datasets.
 ```{r}
@@ -320,5 +361,7 @@ The [queries] I asked GPT:
 1. How to transfer the date form from `2015 Jan` to `2015 & 1` for join the two dataset
 
 2. How to exclude the footnote in dataset
+
+3. The period diff. adjusting between wrangling and raw data
 
 :::
