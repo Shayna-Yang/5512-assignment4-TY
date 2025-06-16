@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 
 ### Research Question
 
-Does the Big Mac Index accurately reflect the real cost of living changes in Taiwan? Analyze between 2015 and 2025.
+Does the Big Mac Index accurately reflect the real cost of living changes in Taiwan? Analyze between 2015 and 2024.
 
 -   Is the Big Mac Index a reliable indicator of Taiwan’s actual exchange rate (NTD/USD)?
 
@@ -142,7 +142,7 @@ Download steps:
 
 3.  Set the filter condition:
 
--   Period: 2015-01\~2025-01 (To match the lastest update of big mac index data)
+-   Period: 2014-12\~2024-12 (To match the lastest update of big mac index data)
 -   Frequency: Monthly
 -   Value Types: Value and Annual Change Rate
 -   Output: CSV
@@ -154,9 +154,9 @@ Download steps:
 
 ```{r}
 # read raw data
-raw_cpi <- read_csv("raw_data/Monthly_CPI_2015-2025.csv", skip = 2)
+raw_cpi <- read_csv("raw_data/Monthly_CPI_2014-2024.csv", skip = 2)
 
-# filter data from Jan 2015 to Jan 2025
+# filter data from Dec 2014 to Dec 2024
 cpi_processed <- raw_cpi |>
   rename(
     period = `Period`,
@@ -170,11 +170,25 @@ cpi_processed <- raw_cpi |>
     year = year(period),
     month = month(period)
   ) |>
-  filter(month %in% c(1, 7)) |>
+  filter(month %in% c(12, 6)) |>
   select(year, month, CPI_index, YoY_rate)
 
+# match the period with big mac dataset
+cpi_period_moved <- cpi_processed |>
+  mutate(
+    year = case_when(
+      month == 12 ~ year + 1,
+      TRUE ~ year
+    ),
+    month = case_when(
+      month == 12 ~ 1,
+      month == 6 ~ 7
+    )
+  ) |>
+    arrange(year, month)
+
 # save processed data
-write_csv(cpi_processed, "data/tw_cpi_2015-2025.csv")
+write_csv(cpi_period_moved, "data/tw_cpi_2014-2024.csv")
 ```
 
 #### 3. NTD/USD Exchange Rate Data
@@ -234,7 +248,7 @@ scrape_exchange_rate <- function(url) {
     }
     
     # keep only Jan. and Jul.
-    if (current_month %in% c(1, 7)) {
+    if (current_month %in% c(6, 12)) {
       clean_data <- rbind(clean_data, data.frame(
         year = current_year,
         month = current_month,
@@ -252,10 +266,18 @@ exchange_recent <- scrape_exchange_rate(url_monthly)
 # combine two data
 exchange_all <- bind_rows(exchange_historical, exchange_recent) |>
   arrange(year, month) |>
+  filter(year >= 2014 & year <= 2024)
+
+# Shift the period
+exchange_all_shifted <- exchange_all |>
+  mutate(
+    year = if_else(month == 12, year + 1L, year),
+    month = if_else(month == 12, 1L, 7L)
+  ) |>
   filter(year >= 2015 & year <= 2025)
 
 # save processed data
-write_csv(exchange_all, "data/twd_usd_exchange_2015_2025.csv")
+write_csv(exchange_all_shifted, "data/twd_usd_exchange_2014_2024.csv")
 ```
 
 #### 4. Australia Consumer Price Index (CPI) Data
@@ -274,11 +296,11 @@ Download steps:
 # read raw data
 raw_au_cpi <- read_csv("raw_data/All groups CPI and Trimmed mean, Australia, annual movement (%).csv", skip = 1)
 
-# filter data from Jan 2015 to Jan 2025
+# filter data from Dec 2014 to Dec 2024
 au_cpi_processed <- raw_au_cpi |>
   rename(
     period = 1,
-    CPI_index = 2
+    YoY_rate = 2
   ) |>
   # filter only the year-month in dataset
   filter(str_detect(period, "Jun|Dec")) |>
@@ -292,10 +314,14 @@ au_cpi_processed <- raw_au_cpi |>
     month = if_else(str_detect(period, "Dec"), 1, 7)
   ) |>
   filter(year >= 2015 & year <= 2025) |>
-  select(year, month, CPI_index)
+  select(year, month, YoY_rate) |>
+  arrange(year, month)|>
+  mutate(
+    CPI_index = accumulate(YoY_rate, function(prev, pct) prev * (1 + pct / 100), .init = 100)[-1]
+  )
 
 # save processed data
-write_csv(au_cpi_processed, "data/au_cpi_2015-2025.csv")
+write_csv(au_cpi_processed, "data/au_cpi_2014-2024.csv")
 ```
 
 
@@ -363,5 +389,7 @@ The [queries] I asked GPT:
 2. How to exclude the footnote in dataset
 
 3. The period diff. adjusting between wrangling and raw data
+
+4. Setting YoY_rate to index.
 
 :::
