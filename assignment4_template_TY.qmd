@@ -440,6 +440,70 @@ ggplotly(plot_bigmac_cpi, tooltip = "text")
 ```
 According to @fig-cpi, Australia shows a growing gap between CPI and Big Mac prices after 2022. In contrast, Taiwan’s Big Mac prices and CPI present a more consistent trend throughout the same period. This suggests that in Taiwan, Big Mac prices are more closely aligned with domestic inflation, supporting the use of the Big Mac Index as a viable proxy for tracking changes in the cost of living.
 
+### Analysis 2: Is the Big Mac Index a reliable indicator of Taiwan’s actual exchange rate (NTD/USD)?
+
+```{r}
+#| echo: false
+#| label: fig-exchange
+#| fig-cap: "Big Mac PPP vs Actual Exchange Rate"
+
+plot_data_exchange <- bigmac_all |>
+  mutate(
+    date = as.Date(paste(year, month, "01", sep = "-"))
+  ) |>
+  select(date, dollar_ex, NTD_USD) |>
+  pivot_longer(cols = c(dollar_ex, NTD_USD),
+               names_to = "Indicator", values_to = "Value")
+
+plot_exchange <- ggplot(plot_data_exchange, aes(
+  x = date, y = Value, color = Indicator, group = Indicator,
+  text = paste0("Date: ", date,
+                "<br>Indicator: ", Indicator,
+                "<br>Value: ", round(Value, 2))
+)) +
+  geom_point() +
+  geom_line() +
+  labs(
+    x = "Year", y = "Value", color = "Indicator"
+  ) +
+  theme_minimal()
+ggplotly(plot_exchange, tooltip = "text")
+```
+
+Though the implied rate (dollar_ex) and the official NTD/USD rate (NTD_USD) in @fig-exchange move closely together, we observe that the actual exchange rate is consistently slightly lower than the Big Mac implied rate.
+
+```{r}
+#| echo: false
+#| label: fig-valuation
+#| fig-cap: "Taiwan Dollar Valuation Based on Big Mac Index"
+
+plot_valuation <- bigmac_all |>
+  mutate(date = as.Date(paste(year, month, "01", sep = "-")),
+         ValuationType = ifelse(USD_valuation > 0, "Overvalued", "Undervalued"))
+
+ggplot(plot_valuation, aes(x = date, y = USD_valuation, fill = ValuationType)) +
+  geom_col() +
+  scale_fill_manual(values = c("Overvalued" = "red", "Undervalued" = "navy")) +
+  labs(x = "Year", y = "% Difference", fill = "Valuation") +
+  theme_minimal()
+```
+
+To better highlight the Big Mac Index’s estimation power, I first directly compared the implied rate (dollar_ex) and the official NTD/USD rate (NTD_USD) in @fig-exchange. While the lines appeared close, @fig-valuation shows that the valuation remains negative over the entire period — indicating a consistent undervaluation of the TWD. When interpreted alongside Taiwan’s steadily rising CPI and Big Mac prices, this undervaluation implies that the real cost of living may have increased more than what the nominal exchange rate alone would suggest — reinforcing the argument that the Big Mac Index does capture aspects of local price pressure not directly reflected in the official rate.
+
+### Conclusions
+
+Based on our analysis of CPI, Big Mac prices, and exchange rate data between 2015 and 2024, the Big Mac Index does partially reflect real cost-of-living changes in Taiwan.
+
+First, the trend of Taiwan’s Big Mac prices close to its CPI, suggesting that McDonald's pricing behavior follows with inflationary pressures. In contrast, Australia, as a control group, shows a wider gap between its Big Mac price trend and CPI movement in recent years. This comparison presents the idea that in Taiwan, Big Mac pricing serves as a valid consumer-side indicator of rising living costs.
+
+Second, although Taiwan’s official NTD/USD exchange rate generally tracks the implied PPP rate from the Big Mac Index, it consistently remains slightly below it. This persistent undervaluation suggests that Taiwan’s currency may be slightly underpriced compared to its actual purchasing power, also supporting the notion that cost-of-living burdens may be underestimated by official rates alone.
+
+In conclusion, these findings indicate that the Big Mac Index, despite its simplicity, offers a useful and intuitive supplement to government-reported indicators, especially where consumer sentiment and real-world price perception matter. It may not replace the CPI or official exchange rates, but it does provide a complementary lens into how inflation and currency value feel at the consumer level.
+
+So, do government-issued metrics fully capture what people are really experiencing in their daily cost of living?
+
+(830 words)
+
 ### References
 
 ### Blogpost Structure
