@@ -1,0 +1,96 @@
+README: Processed Dataset for Big Mac Index Analysis (2015–2025)
+=================================================================
+
+Author: TZU-HSUAN YANG  
+Student ID: 35461586  
+Date of Release: 2025-06
+Primary Files: bigmac_2015-2025.csv, bigmac_cpi_2015-2025.csv  
+Data Dictionary: data-dictionary.csv  
+
+---
+
+1. Project Overview
+-------------------
+This dataset was created as part of an analysis exploring whether the Big Mac Index accurately reflects real cost-of-living changes in Taiwan. The project includes a comparative approach using data from both Taiwan and Australia, aligning Big Mac prices, CPI indexes, and exchange rates across consistent time points.
+
+The data sources are all publicly available and include government statistics and economic indicators. All personal identifiers were excluded, and only aggregated, country-level data were used.
+
+---
+
+2. Files Included
+-----------------
+
+1. bigmac_2015-2025.csv  
+   → Taiwan: Big Mac price, implied exchange rate, official exchange rate (NTD/USD), and Consumer Price Index (CPI).
+
+2. bigmac_cpi_2015-2025.csv  
+   → Combined dataset including Taiwan and Australia: Big Mac price and CPI index for both countries.
+
+3. data-dictionary.csv  
+   → A data dictionary explaining all variables across both datasets, including definitions, transformations, and derivations.
+
+4. README.txt  
+   → This file. Provides context for understanding, interpreting, and ethically using the dataset.
+
+---
+
+3. How to Use the Data
+----------------------
+
+- Load into R using:
+```r
+read_csv("data/bigmac_2015-2025.csv")
+read_csv("data/bigmac_cpi_2015-2025.csv")
+Use data-dictionary.csv to understand variable definitions, units, and processing history.
+
+This dataset is suitable for:
+
+- Assessing currency misalignment via Big Mac PPP vs. actual exchange rates.
+
+- Comparing Big Mac pricing trends with inflation indicators (CPI).
+
+- Performing cross-country cost-of-living analysis (Taiwan vs. Australia).
+
+Assumptions and Processing Notes
+
+- Big Mac Index data is released biannually (January and July). All CPI and exchange rate data were aligned accordingly by shifting values from December/June to January/July.
+
+- Australian CPI data, originally in % annual change, was converted into index form (base = 100) for visual comparability.
+
+- Taiwan’s CPI index and exchange rates were retrieved from official government sources and adjusted for temporal alignment.
+
+- All data cleaning, joining, and visualizations were performed using R packages.
+
+Limitations
+
+- The Big Mac Index only reflects a single consumer good and may not capture full inflationary trends.
+
+- The Australian CPI index is reconstructed from annual % change data and may not reflect full granularity.
+
+- Regional price variation within each country is not considered.
+
+- Currency undervaluation/overvaluation estimates are based on a simplified PPP model and do not consider trade policies or capital flows.
+
+Ethics and Responsible Use
+
+- All data are aggregated and publicly available.
+
+- This dataset should be used strictly for academic and educational purposes (ETC5512 Assignment 4).
+
+- No attempt should be made to draw individual or company-level conclusions.
+
+- Data sources are appropriately cited and fall under open data licenses (OGDL, CC BY 4.0).
+
+Sources
+
+The Economist: Big Mac Index GitHub Repository
+https://github.com/TheEconomist/big-mac-data
+
+Taiwan Directorate-General of Budget, Accounting and Statistics
+https://eng.stat.gov.tw
+
+Central Bank of the Republic of China (Taiwan)
+https://www.cbc.gov.tw
+
+Australian Bureau of Statistics
+https://www.abs.gov.au

@@ -92,7 +92,7 @@ This blog post analyzes the relationship between the Big Mac Index, Taiwan's off
 
 ### Data Downloading and Wrangling
 
-This section outlines the steps to download the datasets used analysis. All processing was done by R using packages. All data wrangling steps were documented in this report. A corresponding `README` and `data_dictionary` are included in the submission.  **(Still Undone for readme and data dictionary)**
+This section outlines the steps to download the datasets used analysis. All processing was done by R using packages. All data wrangling steps were documented in this report. A corresponding `README` and `data_dictionary` are included in the submission.
 
 #### 1. Big Mac Data (Taiwan and Australia)
 
