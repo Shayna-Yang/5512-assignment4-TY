@@ -250,9 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">USD_valuation =</span> (dollar_ex <span class="sc">-</span> USD_raw) <span class="sc">/</span> USD_raw </span>
 <span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># for compare ppp and actual rate</span></span>
 <span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, month, local_price, dollar_ex, USD_raw, USD_valuation)</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="co"># save processed data</span></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(bigmac_au, <span class="st">"data/bigmac_au_2015-2025.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, month, local_price, dollar_ex, USD_raw, USD_valuation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="taiwan-consumer-price-index-cpi-data-1" class="level4">
@@ -307,10 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>      month <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="dv">7</span></span>
 <span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(year, month)</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="co"># save processed data</span></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(cpi_period_moved, <span class="st">"data/tw_cpi_2014-2024.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">arrange</span>(year, month)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="ntdusd-exchange-rate-data-1" class="level4">
@@ -394,10 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>    <span class="at">year =</span> <span class="fu">if_else</span>(month <span class="sc">==</span> <span class="dv">12</span>, year <span class="sc">+</span> <span class="dv">1</span>L, year),</span>
 <span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">month =</span> <span class="fu">if_else</span>(month <span class="sc">==</span> <span class="dv">12</span>, <span class="dv">1</span>L, <span class="dv">7</span>L)</span>
 <span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2015</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2025</span>)</span>
-<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="co"># save processed data</span></span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(exchange_all_shifted, <span class="st">"data/twd_usd_exchange_2014_2024.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2015</span> <span class="sc">&amp;</span> year <span class="sc">&lt;=</span> <span class="dv">2025</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="australia-consumer-price-index-cpi-data-1" class="level4">
@@ -435,10 +427,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(year, month)<span class="sc">|&gt;</span></span>
 <span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">CPI_index =</span> <span class="fu">accumulate</span>(YoY_rate, <span class="cf">function</span>(prev, pct) prev <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">+</span> pct <span class="sc">/</span> <span class="dv">100</span>), <span class="at">.init =</span> <span class="dv">100</span>)[<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="co"># save processed data</span></span>
-<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a><span class="fu">write_csv</span>(au_cpi_processed, <span class="st">"data/au_cpi_2014-2024.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="combine-the-datasets" class="level4">

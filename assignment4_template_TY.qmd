@@ -143,8 +143,6 @@ bigmac_au <- bigmac_data |>
     # for compare ppp and actual rate
   ) |>
   select(year, month, local_price, dollar_ex, USD_raw, USD_valuation)
-# save processed data
-write_csv(bigmac_au, "data/bigmac_au_2015-2025.csv")
 ```
 
 #### 2. Taiwan Consumer Price Index (CPI) Data
@@ -201,9 +199,6 @@ cpi_period_moved <- cpi_processed |>
     )
   ) |>
     arrange(year, month)
-
-# save processed data
-write_csv(cpi_period_moved, "data/tw_cpi_2014-2024.csv")
 ```
 
 #### 3. NTD/USD Exchange Rate Data
@@ -290,9 +285,6 @@ exchange_all_shifted <- exchange_all |>
     month = if_else(month == 12, 1L, 7L)
   ) |>
   filter(year >= 2015 & year <= 2025)
-
-# save processed data
-write_csv(exchange_all_shifted, "data/twd_usd_exchange_2014_2024.csv")
 ```
 
 #### 4. Australia Consumer Price Index (CPI) Data
@@ -334,9 +326,6 @@ au_cpi_processed <- raw_au_cpi |>
   mutate(
     CPI_index = accumulate(YoY_rate, function(prev, pct) prev * (1 + pct / 100), .init = 100)[-1]
   )
-
-# save processed data
-write_csv(au_cpi_processed, "data/au_cpi_2014-2024.csv")
 ```
 
 
