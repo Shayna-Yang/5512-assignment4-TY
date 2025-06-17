@@ -112,8 +112,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="research-question">Research Question</h3>
 <p>Does the Big Mac Index accurately reflect the real cost of living changes in Taiwan? Analyze between 2015 and 2024.</p>
 <ul>
-<li><p>Is the Big Mac Index a reliable indicator of Taiwan’s actual exchange rate (NTD/USD)?</p></li>
 <li><p>How does the Big Mac price in Taiwan correlate with official CPI changes?</p></li>
+<li><p>Is the Big Mac Index a reliable indicator of Taiwan’s actual exchange rate (NTD/USD)?</p></li>
 </ul>
 </section>
 <section id="data-sources-and-suitability" class="level3">
@@ -164,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="ntdusd-exchange-rate-data">3. NTD/USD Exchange Rate Data</h4>
 <ul>
 <li><strong>Source:</strong> <a href="https://www.cbc.gov.tw/en/mp-2.html">Central Bank of the Republic of China (Taiwan)</a></li>
-<li><strong>Content:</strong> Selling exchange rate of New Taiwan Dollar (NTD) against US Dollar (USD), extracted for January and July each year between 2015 and 2025. The rates represent the official figures published by the Central Bank of Taiwan.</li>
+<li><strong>Content:</strong> Selling exchange rate of New Taiwan Dollar (NTD) against US Dollar (USD), extracted for December and June each year between 2014 and 2024. The rates represent the official figures published by the Central Bank of Taiwan.</li>
 <li><strong>Last Updated:</strong> May, 2025 (Monthly Update)</li>
 <li><strong>Data Type:</strong> Official financial data</li>
 <li><strong>Suitability:</strong>
@@ -185,8 +185,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="australia-consumer-price-index-cpi-data">4. Australia Consumer Price Index (CPI) Data</h4>
 <ul>
 <li><strong>Source:</strong> <a href="https://www.abs.gov.au/">Australian Bureau of Statistics</a></li>
-<li><strong>Content:</strong> Annual percentage change in the Consumer Price Index (CPI) for Australia across all groups, including Trimmed Mean CPI. The dataset presents quarterly changes from Mar, 2015 to Mar, 2025.</li>
-<li><strong>Last Updated:</strong> April, 2025 (Quarterly Update)</li>
+<li><strong>Content:</strong> Annual percentage change in the Consumer Price Index (CPI) for Australia across all groups, including Trimmed Mean CPI. The dataset presents quarterly changes from Dec, 2014 to Dec, 2024.</li>
+<li><strong>Last Updated:</strong> Jan, 2025 (Quarterly Update)</li>
 <li><strong>Data Type:</strong> Census</li>
 <li><strong>Suitability:</strong>
 <ul>
@@ -488,9 +488,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<section id="whats-in-this-section" class="level3">
-<h3 class="anchored" data-anchor-id="whats-in-this-section">What’s in this section</h3>
-<p>Here is where you should write your blogpost! (Task 2)</p>
+<section id="why-analyze-the-big-mac-index" class="level3">
+<h3 class="anchored" data-anchor-id="why-analyze-the-big-mac-index">Why analyze the Big Mac Index?</h3>
+<p>Recently, residents in Taiwan have expressed growing concerns about the rising cost of living. While price of food, clothing, Housing, etc. rises by company with the reasons which is inflation and cost-rising, official statistics were thought do not reflect the lived experiences of consumers. The Big Mac Index-originally introduced by The Economist as a tool to measure currency misalignment through burger prices-has gained traction as an informal but intuitive indicator of purchasing power parity and local price levels. But can this burger-based index actually capture the economic pressures people feel in their daily lives in Taiwan?</p>
+<p>According to the open letter from President of McDonald’s USA and Statement From McDonald’s Australia, which link price increases to rising operational costs rather than pure profit-seeking, we assume that Big Mac price changes can be treated as a proxy for changes in the cost of living. Although Taiwan McDonald’s only mentioned the price adjusting is based on operation policy, such an assumption sets the foundation for our study.</p>
+</section>
+<section id="methodology-and-data-overview" class="level3">
+<h3 class="anchored" data-anchor-id="methodology-and-data-overview">Methodology and Data Overview</h3>
+<p>To assess whether the Big Mac Index reflects real cost-of-living changes in Taiwan, our methodology centers on aligning key time points to ensure consistency across all sources. We focused on two main comparisons:</p>
+<ol type="1">
+<li>How does the Big Mac price in Taiwan correlate with official CPI changes?</li>
+</ol>
+<p>Australia is included as a control group. By comparing Taiwan’s and Australia’s Big Mac price movement alongside their CPI trends, I aim to highlight potential misalignments or limitations in the Index when applied to Taiwan.</p>
+<ol start="2" type="1">
+<li>Is the Big Mac Index a reliable indicator of Taiwan’s actual exchange rate (NTD/USD)?</li>
+</ol>
+<p>I used four datasets:</p>
+<ol type="1">
+<li><p>Big Mac Index: Sourced from The Economist’s GitHub, containing local burger prices, exchange rates, and implied purchasing power parity (PPP).</p></li>
+<li><p>Taiwan CPI Data: From Taiwan’s Directorate-General of Budget, Accounting and Statistics, including monthly General Index and year-over-year percentage change.</p></li>
+<li><p>Australia CPI Data: Downloaded from the Australian Bureau of Statistics. Annual inflation rates were reconstructed into index values to align with other datasets.</p></li>
+<li><p>NTD/USD Exchange Rate: Scraped from the Central Bank of Taiwan, using the official selling rates.</p></li>
+</ol>
+<p>To maintain consistency, I shifted CPI and exchange rate dates by one month (e.g., December → following January) to match Big Mac Index release timing. All datasets were cleaned and merged using R, and matched on year and month.</p>
 </section>
 <section id="blogpost-structure" class="level3">
 <h3 class="anchored" data-anchor-id="blogpost-structure">Blogpost Structure</h3>
@@ -511,8 +531,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
-<section id="whats-in-this-section-1" class="level3">
-<h3 class="anchored" data-anchor-id="whats-in-this-section-1">What’s in this section</h3>
+<section id="whats-in-this-section" class="level3">
+<h3 class="anchored" data-anchor-id="whats-in-this-section">What’s in this section</h3>
 <p>Here is where you should tell us about your reflection on your analysis (Task 3).</p>
 <p>Again, these are the details about <strong>your</strong> perspective and the gritty details behind the scenes of your analysis.</p>
 </section>

@@ -24,9 +24,9 @@ knitr::opts_chunk$set(
 
 Does the Big Mac Index accurately reflect the real cost of living changes in Taiwan? Analyze between 2015 and 2024.
 
--   Is the Big Mac Index a reliable indicator of Taiwan’s actual exchange rate (NTD/USD)?
-
 -   How does the Big Mac price in Taiwan correlate with official CPI changes?
+
+-   Is the Big Mac Index a reliable indicator of Taiwan’s actual exchange rate (NTD/USD)?
 
 ### Data Sources and Suitability
 
@@ -64,7 +64,7 @@ This blog post analyzes the relationship between the Big Mac Index, Taiwan's off
 #### 3. NTD/USD Exchange Rate Data
 
 -   **Source:** [Central Bank of the Republic of China (Taiwan)](https://www.cbc.gov.tw/en/mp-2.html)
--   **Content:** Selling exchange rate of New Taiwan Dollar (NTD) against US Dollar (USD), extracted for January and July each year between 2015 and 2025. The rates represent the official figures published by the Central Bank of Taiwan.
+-   **Content:** Selling exchange rate of New Taiwan Dollar (NTD) against US Dollar (USD), extracted for December and June each year between 2014 and 2024. The rates represent the official figures published by the Central Bank of Taiwan.
 -   **Last Updated:** May, 2025 (Monthly Update)
 -   **Data Type:** Official financial data
 -   **Suitability:**
@@ -79,8 +79,8 @@ This blog post analyzes the relationship between the Big Mac Index, Taiwan's off
 #### 4. Australia Consumer Price Index (CPI) Data
 
 -   **Source:** [Australian Bureau of Statistics](https://www.abs.gov.au/)
--   **Content:** Annual percentage change in the Consumer Price Index (CPI) for Australia across all groups, including Trimmed Mean CPI. The dataset presents quarterly changes from Mar, 2015 to Mar, 2025.
--   **Last Updated:** April, 2025 (Quarterly Update)
+-   **Content:** Annual percentage change in the Consumer Price Index (CPI) for Australia across all groups, including Trimmed Mean CPI. The dataset presents quarterly changes from Dec, 2014 to Dec, 2024.
+-   **Last Updated:** Jan, 2025 (Quarterly Update)
 -   **Data Type:** Census
 -   **Suitability:**
     -   Provides a comprehensive overview of inflation trends across Australia.
@@ -404,11 +404,11 @@ According to the open letter from President of McDonald’s USA and Statement Fr
 
 To assess whether the Big Mac Index reflects real cost-of-living changes in Taiwan, our methodology centers on aligning key time points to ensure consistency across all sources. We focused on two main comparisons:
 
-1. Is the Big Mac Index a reliable indicator of Taiwan’s actual exchange rate (NTD/USD)?
-
-2. How does the Big Mac price in Taiwan correlate with official CPI changes? 
+1. How does the Big Mac price in Taiwan correlate with official CPI changes? 
 
 Australia is included as a control group. By comparing Taiwan's and Australia's Big Mac price movement alongside their CPI trends, I aim to highlight potential misalignments or limitations in the Index when applied to Taiwan.
+
+2. Is the Big Mac Index a reliable indicator of Taiwan’s actual exchange rate (NTD/USD)?
 
 I used four datasets:
 
