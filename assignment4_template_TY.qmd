@@ -394,9 +394,33 @@ write_csv(bigmac_cpi, "data/bigmac_cpi_2015-2025.csv")
 
 ## Blog post
 
-### What's in this section
+### Why analyze the Big Mac Index?
 
-Here is where you should write your blogpost! (Task 2)
+Recently, residents in Taiwan have expressed growing concerns about the rising cost of living. While price of food, clothing,  Housing, etc. rises by company with the reasons which is inflation and cost-rising, official statistics were thought do not reflect the lived experiences of consumers. The Big Mac Index-originally introduced by The Economist as a tool to measure currency misalignment through burger prices-has gained traction as an informal but intuitive indicator of purchasing power parity and local price levels. But can this burger-based index actually capture the economic pressures people feel in their daily lives in Taiwan?
+
+According to the open letter from President of McDonald’s USA and Statement From McDonald’s Australia, which link price increases to rising operational costs rather than pure profit-seeking, we assume that Big Mac price changes can be treated as a proxy for changes in the cost of living. Although Taiwan McDonald’s only mentioned the price adjusting is based on operation policy, such an assumption sets the foundation for our study.
+
+### Methodology and Data Overview
+
+To assess whether the Big Mac Index reflects real cost-of-living changes in Taiwan, our methodology centers on aligning key time points to ensure consistency across all sources. We focused on two main comparisons:
+
+1. Is the Big Mac Index a reliable indicator of Taiwan’s actual exchange rate (NTD/USD)?
+
+2. How does the Big Mac price in Taiwan correlate with official CPI changes? 
+
+Australia is included as a control group. By comparing Taiwan's and Australia's Big Mac price movement alongside their CPI trends, I aim to highlight potential misalignments or limitations in the Index when applied to Taiwan.
+
+I used four datasets:
+
+1. Big Mac Index: Sourced from The Economist’s GitHub, containing local burger prices, exchange rates, and implied purchasing power parity (PPP).
+
+2. Taiwan CPI Data: From Taiwan’s Directorate-General of Budget, Accounting and Statistics, including monthly General Index and year-over-year percentage change.
+
+3. Australia CPI Data: Downloaded from the Australian Bureau of Statistics. Annual inflation rates were reconstructed into index values to align with other datasets.
+
+4. NTD/USD Exchange Rate: Scraped from the Central Bank of Taiwan, using the official selling rates.
+
+To maintain consistency, I shifted CPI and exchange rate dates by one month (e.g., December → following January) to match Big Mac Index release timing. All datasets were cleaned and merged using R, and matched on year and month.
 
 ### Blogpost Structure
 
