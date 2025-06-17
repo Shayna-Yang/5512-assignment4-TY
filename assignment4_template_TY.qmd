@@ -128,9 +128,6 @@ bigmac_tw <- bigmac_data |>
   ) |>
   select(year, month, local_price, dollar_ex, USD_raw, USD_valuation)
 
-# save processed data
-write_csv(bigmac_tw, "data/bigmac_tw_2015-2025.csv")
-
 # filter for Australia from 2015 to 2025
 bigmac_au <- bigmac_data |>
   filter(name == "Australia") |>
@@ -411,6 +408,40 @@ I used four datasets:
 
 To maintain consistency, I shifted CPI and exchange rate dates by one month (e.g., December → following January) to match Big Mac Index release timing. All datasets were cleaned and merged using R, and matched on year and month.
 
+### Analysis 1: Big Mac vs. CPI – Do they move together?
+
+```{r}
+#| echo: false
+#| label: fig-cpi
+#| fig-cap: "Big Mac vs. CPI (Australia and Taiwan)"
+
+library(plotly)
+plot_data_bigmac_cpi <- bigmac_cpi |>
+  mutate(date = as.Date(paste(year, month, "01", sep = "-"))) |>
+  select(date, country, CPI_index, local_price) |>
+  pivot_longer(cols = c(CPI_index, local_price), names_to = "Indicator", values_to = "Value")
+
+plot_bigmac_cpi <- ggplot(plot_data_bigmac_cpi, aes(
+    x = date, y = Value,  color = country, linetype = Indicator,
+    group = interaction(country, Indicator),
+    text = paste0("Date:", date,
+                        "<br>Country:", country,
+                        "<br>Indicator:", Indicator,
+                        "<br>Value:", round(Value, 2))
+  )) + 
+  geom_line()+
+  labs(
+    x = "Year", 
+    color = "Country",
+    linetype = "Indicator"
+  ) + 
+  theme_minimal()
+ggplotly(plot_bigmac_cpi, tooltip = "text")
+```
+According to @fig-cpi, Australia shows a growing gap between CPI and Big Mac prices after 2022. In contrast, Taiwan’s Big Mac prices and CPI present a more consistent trend throughout the same period. This suggests that in Taiwan, Big Mac prices are more closely aligned with domestic inflation, supporting the use of the Big Mac Index as a viable proxy for tracking changes in the cost of living.
+
+### References
+
 ### Blogpost Structure
 
 There is no strict structure for you to follow. However, here is a skeleton structure you may find helpful.
@@ -442,6 +473,8 @@ The [queries] I asked GPT:
 
 3. The period diff. adjusting between wrangling and raw data
 
-4. Setting YoY_rate to index.
+4. Setting YoY_rate to index
+
+5. solve issue that ggplotly got blank result
 
 :::
