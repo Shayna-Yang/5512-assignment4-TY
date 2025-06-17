@@ -382,9 +382,9 @@ write_csv(bigmac_cpi, "data/bigmac_cpi_2015-2025.csv")
 
 ### Why analyze the Big Mac Index?
 
-Recently, residents in Taiwan have expressed growing concerns about the rising cost of living. While price of food, clothing,  Housing, etc. rises by company with the reasons which is inflation and cost-rising, official statistics were thought do not reflect the lived experiences of consumers. The Big Mac Index-originally introduced by The Economist as a tool to measure currency misalignment through burger prices-has gained traction as an informal but intuitive indicator of purchasing power parity and local price levels. But can this burger-based index actually capture the economic pressures people feel in their daily lives in Taiwan?
+Recently, residents in Taiwan have expressed growing concerns about the rising cost of living. While prices of food, clothing, and housing have risen due to inflation and increased operational costs, official statistics are often perceived as disconnected from consumers' lived experiences. The Big Mac Index-originally introduced by The Economist as a tool to measure currency misalignment through burger prices-has gained traction as an informal but intuitive indicator of purchasing power parity and local price levels. But can this burger-based index actually capture the economic pressures people feel in their daily lives in Taiwan?
 
-According to the open letter from President of McDonald’s USA and Statement From McDonald’s Australia, which link price increases to rising operational costs rather than pure profit-seeking, we assume that Big Mac price changes can be treated as a proxy for changes in the cost of living. Although Taiwan McDonald’s only mentioned the price adjusting is based on operation policy, such an assumption sets the foundation for our study.
+According to the open letter from President of McDonald’s USA and Statement From McDonald’s Australia, which link price increases to rising operational costs rather than pure profit-seeking, we adopt the assumption that changes in Big Mac prices can serve as a proxy for broader changes in the cost of living. Although Taiwan McDonald’s only mentioned the price adjusting is based on operation policy, such an assumption sets the foundation for our study.
 
 ### Methodology and Data Overview
 
@@ -498,11 +498,11 @@ First, the trend of Taiwan’s Big Mac prices close to its CPI, suggesting that 
 
 Second, although Taiwan’s official NTD/USD exchange rate generally tracks the implied PPP rate from the Big Mac Index, it consistently remains slightly below it. This persistent undervaluation suggests that Taiwan’s currency may be slightly underpriced compared to its actual purchasing power, also supporting the notion that cost-of-living burdens may be underestimated by official rates alone.
 
-In conclusion, these findings indicate that the Big Mac Index, despite its simplicity, offers a useful and intuitive supplement to government-reported indicators, especially where consumer sentiment and real-world price perception matter. It may not replace the CPI or official exchange rates, but it does provide a complementary lens into how inflation and currency value feel at the consumer level.
+In conclusion, these findings indicate that the Big Mac Index, despite its simplicity, offers a useful and intuitive supplement to government-reported indicators, especially where consumer sentiment and real-world price perception matter. It may not replace the CPI or official exchange rates, but it does provide a complementary lens into how inflation and currency value feel at the consumer level. While the Big Mac Index offers consumer-centered insights, it remains limited by its reliance on a single product and potential regional pricing strategies. Future studies could explore multi-item price baskets or integrate real wage data for more holistic comparisons.
 
-So, do government-issued metrics fully capture what people are really experiencing in their daily cost of living?
+So, do government-issued statistics fully capture what people are really experiencing in their daily cost of living?
 
-(830 words)
+(869 words)
 
 ### References
 
