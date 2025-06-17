@@ -506,16 +506,19 @@ So, do government-issued statistics fully capture what people are really experie
 
 ### References
 
-### Blogpost Structure
+1. McDonald’s USA. (2024). Open Letter from McDonald’s USA President. https://corporate.mcdonalds.com
 
-There is no strict structure for you to follow. However, here is a skeleton structure you may find helpful.
+2. McDonald’s Australia. (2024). Statement from McDonald’s Australia on Pricing. https://mcdonalds.com.au/
 
-1.  Title (is set at the top of this document)
-2.  Motivation\
-3.  Data\
-4.  Analysis\
-5.  Conclusions\
-6.  References
+3. Plotly- C. Sievert. Interactive Web-Based Data Visualization with R, plotly, and shiny. Chapman and Hall/CRC Florida, 2020.
+
+4. Big Mac Index- The Economist. (2025). Big Mac Index. GitHub Repository. https://github.com/TheEconomist/big-mac-data
+
+5. Taiwan Consumer Price Index- Directorate-General of Budget, Accounting and Statistics (DGBAS), Taiwan. (2025). Consumer Price Index Monthly Data (2014–2024). https://eng.stat.gov.tw
+
+6. NTD/USD Exchange Rate- Central Bank of the Republic of China (Taiwan). (2025). Monthly Foreign Exchange Rates (NTD/USD). https://www.cbc.gov.tw
+
+7. Australian Bureau of Statistics. (2025, January 31). Consumer Price Index, Australia — December Quarter 2024 (ABS Catalogue No. 6401.0). https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia/dec-quarter-2024
 
 <!-- Task 3 Tab: Behind the Scenes -  -->
 
