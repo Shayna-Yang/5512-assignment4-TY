@@ -500,9 +500,9 @@ Second, although Taiwan’s official NTD/USD exchange rate generally tracks the 
 
 In conclusion, these findings indicate that the Big Mac Index, despite its simplicity, offers a useful and intuitive supplement to government-reported indicators, especially where consumer sentiment and real-world price perception matter. It may not replace the CPI or official exchange rates, but it does provide a complementary lens into how inflation and currency value feel at the consumer level. While the Big Mac Index offers consumer-centered insights, it remains limited by its reliance on a single product and potential regional pricing strategies. Future studies could explore multi-item price baskets or integrate real wage data for more holistic comparisons.
 
-So, do government-issued statistics fully capture what people are really experiencing in their daily cost of living?
+So, do government-issued statistics fully capture what people are really experiencing in their daily cost of living? Maybe yes or not—and that’s where tools like the Big Mac Index find their value.
 
-(869 words)
+(884 words)
 
 ### References
 
