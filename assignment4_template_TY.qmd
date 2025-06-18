@@ -520,6 +520,21 @@ So, do government-issued statistics fully capture what people are really experie
 
 7. Australian Bureau of Statistics. (2025, January 31). Consumer Price Index, Australia — December Quarter 2024 (ABS Catalogue No. 6401.0). https://www.abs.gov.au/statistics/economy/price-indexes-and-inflation/consumer-price-index-australia/dec-quarter-2024
 
+### AI Ackownledgement
+
+The [queries](https://chatgpt.com/share/68526423-d0fc-8001-8841-4a2591ecbe07) I asked GPT:
+
+1. How to transfer the date form from `2015 Jan` to `2015 & 1` for join the two dataset
+
+2. How to exclude the footnote in dataset
+
+3. The period diff. adjusting between wrangling and raw data
+
+4. Setting YoY_rate to index
+
+5. solve issue that ggplotly got blank result
+
+
 <!-- Task 3 Tab: Behind the Scenes -  -->
 
 ## Behind the Scenes
@@ -555,19 +570,5 @@ I use GitHub to do the version control [Link to repository](https://github.com/S
 - **v3- Commit eb56167: **In this version, I found that I use the wrong period to match the date of big mac data. I collect all the data again and correct the code and documentation for data wrangling and processing part. Also, I found that Australia CPI is percentage format so I tried to change it into index (set 2015 = base = 100).
 
 - **v4- Commit def1376: **In this version, I revisited the report structure and documentation of my report. I change the order of sub-question to improve the logical flow and correct the period mistake.
-
-### AI Ackownledgement
-
-The [queries](https://chatgpt.com/share/68526423-d0fc-8001-8841-4a2591ecbe07) I asked GPT:
-
-1. How to transfer the date form from `2015 Jan` to `2015 & 1` for join the two dataset
-
-2. How to exclude the footnote in dataset
-
-3. The period diff. adjusting between wrangling and raw data
-
-4. Setting YoY_rate to index
-
-5. solve issue that ggplotly got blank result
 
 :::
