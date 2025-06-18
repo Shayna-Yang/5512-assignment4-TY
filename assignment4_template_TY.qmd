@@ -528,7 +528,33 @@ So, do government-issued statistics fully capture what people are really experie
 
 Here is where you should tell us about your reflection on your analysis (Task 3).
 
-Again, these are the details about **your** perspective and the gritty details behind the scenes of your analysis.
+#### Question 5
+
+Although the Big Mac dataset from The Economist is comprehensive, processing the rest of the datasets was quite tedious. For instance, the exchange rate data was only available via HTML with inconsistent date formats. I had to write custom scraping logic and manually identify and align June and December data to match the Big Mac Index's release schedule (1, January and 1, July). This added complexity to date matching and joins.
+
+Additionally, Australia’s CPI was reported as year-over-year percentages, while Taiwan’s CPI used an index format. To make cross-country comparisons, I had to manually reconstruct Australia’s CPI into an index using 2015 as the base year. These steps were time-consuming but necessary to ensure consistency across datasets.
+
+#### Question 6
+
+A key challenge was finding official support for my assumption that McDonald’s pricing reflects operational costs. Taiwan’s McDonald’s only cited “operational strategy” with no further detail, making my analysis vulnerable. To address this, I sourced official statements from the U.S. and Australia, and added Australian data as a comparative control.
+
+On the coding side, I struggled to get geom_line() to work—it kept returning blank plots. Eventually, I discovered I needed to include a group aesthetic to ensure lines connected properly. It was frustrating but rewarding to debug this. I also tried using geom_point() as a fallback but preferred line charts for showing trends.
+
+#### Question 7
+
+While the Big Mac Index proved useful for comparing trends, the analysis lacks real wage data which would have allowed for a better affordability analysis. Since the pressure of living would not only affected by cost but also the income. Second, the McDonald's prices likely reflect limited urban regions, making national generalisation difficult. Also, the assumption that one product can proxy for all living costs, especially given Taiwan’s diverse consumption patterns is overly simplistic. This limits the scope of the analysis and makes it vulnerable to product-specific biases.
+
+#### Qusetion 8
+
+I use GitHub to do the version control [Link to repository](https://github.com/Shayna-Yang/5512-assignment4-TY#)
+
+- **v1- Commit 860d6fc: **In this version, I change the big mac data from raw data to full data. The reason is that I found the raw data I initially use will lack of information which the raw data lacked USD valuation and other critical fields to do the analysis I want to do. So I switched datasets and created new variables using mutate().
+
+- **v2- Commit 042f9de: **In this version, I restructured the research question by moving the third sub-question to the conclusion, making the logical flow smoother. Also, I found that I need a comparison group to support my further analysis, so I add a new dataset into the project for more detailed analysis.
+
+- **v3- Commit eb56167: **In this version, I found that I use the wrong period to match the date of big mac data. I collect all the data again and correct the code and documentation for data wrangling and processing part. Also, I found that Australia CPI is percentage format so I tried to change it into index (set 2015 = base = 100).
+
+- **v4- Commit def1376: **In this version, I revisited the report structure and documentation of my report. I change the order of sub-question to improve the logical flow and correct the period mistake.
 
 ## AI Ackownledgement
 
