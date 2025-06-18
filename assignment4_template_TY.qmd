@@ -556,9 +556,9 @@ I use GitHub to do the version control [Link to repository](https://github.com/S
 
 - **v4- Commit def1376: **In this version, I revisited the report structure and documentation of my report. I change the order of sub-question to improve the logical flow and correct the period mistake.
 
-## AI Ackownledgement
+### AI Ackownledgement
 
-The [queries] I asked GPT:
+The [queries](https://chatgpt.com/share/68526423-d0fc-8001-8841-4a2591ecbe07) I asked GPT:
 
 1. How to transfer the date form from `2015 Jan` to `2015 & 1` for join the two dataset
 
